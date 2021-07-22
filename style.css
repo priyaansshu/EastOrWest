@@ -154,7 +154,6 @@ body::before {
     display: none;
 }
 .button-text{
-    cursor: default;
     font-size: 14px;
     color: rgb(160,64,185);
     user-select: none;
