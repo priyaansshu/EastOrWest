@@ -8,7 +8,7 @@
 }
 @font-face {
     font-family: "prospekt";
-    src: url(Prospekt\ Press.otf);
+    src: url(Prospekt\ Regular.otf);
 }
 html{
     background: #140f1f;
@@ -386,7 +386,11 @@ body::before {
 
 .g-main-container{
     width: 100%;
-    height: 100vh;
+    min-width: 100vw;
+    max-width: 100vw;
+    height: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -404,7 +408,7 @@ body::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 100vw;
+    max-width: 100%;
 }
 .city-box{
     background: rgb(160,64,185);
@@ -436,7 +440,7 @@ body::before {
 }
 .west, .east{
     z-index: 2;
-    position: relative;
+    position: absolute;
     background: #e35f59;
     margin: 10px;
     min-width: 70px;
@@ -455,10 +459,10 @@ body::before {
     text-transform: uppercase;
 }
 #west-container{
-    left: 10%;
+    left: 0%;
 }
 #east-container{
-    right: 10%;
+    right: 0%;
 }
 .rule-text-1, .rule-text-2{
     font-family: "netflixregular";
@@ -797,6 +801,32 @@ body::before {
         left: -5%;
         top: 38%;
     }
+    .west, .east{
+        z-index: 2;
+        position: relative;
+        background: #e35f59;
+        margin: 10px;
+        min-width: 70px;
+        height: 50px;
+        border-radius: 20px;
+        display: grid;
+        place-content: center;
+        place-items: center;
+        box-shadow: 0px 0px 40px rgb(28, 28, 28, 0.5);
+    }
+    .west-text, .east-text{
+        letter-spacing: 1px;
+        margin: auto;
+        text-align: center;
+        font-size: 13px;
+        text-transform: uppercase;
+    }
+    #west-container{
+        left: 10%;
+    }
+    #east-container{
+        right: 10%;
+    }
 }
 @media only screen and (min-width: 620px) and (max-width: 767px){ 
     .globe{
@@ -1000,6 +1030,32 @@ body::before {
     }
     .rocket{
         width: 250px;
+    }
+    .west, .east{
+        z-index: 2;
+        position: relative;
+        background: #e35f59;
+        margin: 10px;
+        min-width: 70px;
+        height: 50px;
+        border-radius: 20px;
+        display: grid;
+        place-content: center;
+        place-items: center;
+        box-shadow: 0px 0px 40px rgb(28, 28, 28, 0.5);
+    }
+    .west-text, .east-text{
+        letter-spacing: 1px;
+        margin: auto;
+        text-align: center;
+        font-size: 13px;
+        text-transform: uppercase;
+    }
+    #west-container{
+        left: 10%;
+    }
+    #east-container{
+        right: 10%;
     }
     .east, .west{
         cursor: pointer;
