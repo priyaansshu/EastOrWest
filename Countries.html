@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-container">
+            <h1 class="title" id="nav-title" onclick="openindex()">East/West</h1>
+    </div>
+    <div class="g-main-container">
+        <div class="mid-container" id="city-container">
+            <div class="cb2-outer">
+                <div class="west" id="west-container" onclick="clickwest()">
+                    <h2 class="west-text">West</h2>
+                </div>
+                <div class="city-box" id="cb2">
+                    <p class="rule-text-1">Where is</p>
+                    <h2 class="city-name" id="cn2"></h2>
+                    <p class="rule-text-2">with respect to</p>
+                </div>
+                <div class="east" id="east-container" onclick="clickeast()">
+                    <h2 class="east-text">East</h2>
+                </div>
+            </div>
+            <div class="city-box" id="cb1">
+                <h2 class="city-name" id="cn1"></h2>
+            </div>
+        </div>
+        <div class="game-over-container">
+            <h2 class="game-over-text">Your Score: 0</h2>
+            <p class="correct-text">This is the right answer</p>
+            <div class="game-over-button-container">
+                <button class="play-again" onclick="play()">Play Again</button>
+                <div class="bottom-game-button-container">
+                    <button class="home" onclick="openindex()">Home</button>
+                    <button class="share" onclick="tweet()">Tweet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="score-container">
+        <div class="highscore">
+            <h2 id="highscore-text">High Score: <span class="highscore-number">0</span></h2>
+        </div>
+        <div class="score">
+            <h2 id="score-text">Score: <span class="score-number">0</span></h2>
+        </div>
+    </div>
+    <div class="main-graphic-container" id="rocket-container">
+        <img src="images/rocket.png" alt="rocket" class="rocket">
+    </div>
+    <div class="hearts-container">
+        <div class="good-heart">
+            <img src="images/dating-place.png" alt="heart" class="good-heart-img">
+        </div>
+        <div class="bad-heart">
+            <img src="images/broken-heart.png" alt="heart break" class="bad-heart-img">
+        </div>
+    </div>
+    <div class="hands-container">
+        <div class="good-score-hands">
+            <img src="images/victory.png" alt="peace hand" class="hand-1">
+            <img src="images/hiphop.png" alt="hip hop hand" class="hand-2">
+        </div>
+        <div class="bad-score-hands">
+            <img src="images/argh.png" alt="argh hand" class="hand-1">
+            <img src="images/argh2.png" alt="argh hand" class="hand-2">
+        </div>
+    </div>
+
+<!-- ******************************************************************* -->
+
+<script>
+    var city1 = document.getElementById("cn1");
+    var city2 = document.getElementById("cn2");
+    var scoretext = document.querySelector(".score-number");
+    var highscoretext = document.querySelector(".highscore-number");
+    var game_over_text = document.querySelector(".game-over-text");
+    var correct_text = document.querySelector(".correct-text");
+    var cl1=0, cl2=0, initial=1, temp, score=0, highscore=0;
+
+    async function getLocation() {
+        scoretext.innerText = 0;
+        const response = await fetch("countries.json");
+        const cityData = await response.json();
+        let index = Math.floor(Math.random()*cityData.length);
+        if(initial == 1){
+            initial=0;
+            city1.innerHTML=cityData[index].name;
+            cl1 = Math.floor(cityData[index].latlng[1]);
+            
+            console.log("name1: " + cityData[index].name);
+            console.log("lat1: " + cl1);
+        }
+        else{
+            city2.innerHTML=cityData[index].name;
+            cl2 = Math.floor(cityData[index].latlng[1]);
+            
+            var rule = document.querySelector(".rule-text-2");
+            rule.innerHTML = "with respect to";
+
+            console.log("name2: " + cityData[index].name);
+            console.log("lat2: " + cl2); 
+            if(cl2 <= cl1){
+                console.log("west");
+            }
+            else{
+                console.log("east");
+            }
+        }
+    }
+    window.addEventListener("DOMContentLoaded", ()=>{
+        getLocation();
+        getLocation();
+    })
+
+    var temp;
+
+    function clickwest(){
+        if(cl2 < cl1 || cl2 == cl1){
+            city1.innerHTML=city2.innerHTML;
+            cl1=cl2;
+            getLocation();
+            score++;
+            scoretext.innerText = score;
+        }
+        else{
+            document.body.classList.add("gameover");
+            highscore = Math.max(highscore, score);
+            
+            if(score < highscore || score == 0){
+                document.body.classList.remove("good-score");
+                document.body.classList.add("bad-score");
+            }
+            else{
+                document.body.classList.remove("bad-score");
+                document.body.classList.add("good-score");
+            }
+            game_over_text.innerHTML = "Your Score: " + score;
+            correct_text.innerHTML = city2.innerHTML + " lies to the East of " + city1.innerHTML + "!";
+            
+            temp=score; score=0;
+            scoretext.innerText = "Score: " + score;
+            highscoretext.innerText = highscore;
+        }
+    }
+    function clickeast(){
+        if(cl2 > cl1 || cl2 == cl1){
+            city1.innerHTML=city2.innerHTML;
+            cl1=cl2;
+            getLocation();
+            score++;
+            scoretext.innerText = score;
+        }
+        else{
+            document.body.classList.add("gameover");
+            highscore = Math.max(highscore, score);
+
+            if(score < highscore || score == 0){
+                document.body.classList.remove("good-score");
+                document.body.classList.add("bad-score");
+            }
+            else{
+                document.body.classList.remove("bad-score");
+                document.body.classList.add("good-score");
+            }
+            game_over_text.innerHTML = "Your Score: " + score;
+            correct_text.innerHTML = city2.innerHTML + " lies to the West of " + city1.innerHTML + "!";
+
+            temp=score; score=0;
+            scoretext.innerText = "Score: " + score;
+            highscoretext.innerText = highscore;
+        }
+    }
+    
+    function play(){
+        document.body.classList.remove("gameover");
+        document.body.classList.remove("good-score");
+        document.body.classList.remove("bad-score");
+        initial = 1;
+        getLocation();
+        getLocation(); 
+    }
+    function openindex(){
+        window.open("index.html", "_self");
+    }
+    function tweet(){
+        window.open("https://twitter.com/intent/tweet?hashtags=EastOrWest&text=" + "I scored " + temp + " in East Or West. Play to check your Geo skills 🌎🧐");
+    }
+</script>
+</body>
+</html>

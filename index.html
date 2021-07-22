@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>East/West</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="show-footer"> 
+    <div class="main-container">
+        <div class="top-container">
+            <h1 class="title" id="nav-title" onclick="openindex()">East/West</h1>
+        </div>
+        <div class="mid-container">
+            <div class="first-container">
+                <img src="images/globe.png" alt="globe" class="globe">
+                <div class="mid-container-box" id="country-container">
+                    <h2 class="mode-title" id="country-title">Countries</h2>
+                    <p class="mode-description" id="country-description">Guess whether a country lies to the east or to the west of another</p>
+                </div>
+                <div class="button-rc" style="position: relative;">
+                    <div class="play-button laptop-button" id="country-play-button" onclick="opencountry()"><p class="button-text">Play</p></div>
+                </div>
+                <div class="play-button mobile-button" id="country-play-button" onclick="opencountry()"><p class="button-text">Play</p></div>
+            </div>
+            <div class="second-container">
+                <img src="images/location.png" alt="map" class="map">
+                <div class="mid-container-box" id="capital-container">
+                    <h2 class="mode-title" id="capital-title">Cities</h2>
+                    <p class="mode-description" id="capital-description">Guess whether a major city lies to the east or to the west of another</p>
+                </div>
+                <div class="button-rc" style="position: relative;">
+                    <div class="play-button laptop-button" id="capital-play-button" onclick="opencapital()"><p class="button-text">Play</p></div>
+                </div>
+                <div class="play-button mobile-button" id="capital-play-button" onclick="opencapital()"><p class="button-text">Play</p></div>
+            </div>
+        </div>
+        <div class="bottom-container" onclick="opencontact()">
+            <img src="images/up.png" alt="up arrow" class="up">
+        </div>
+        <div class="contact-menu-container">
+            <div class="down-container" onclick="closecontact()">
+                <img src="images/down.png" alt="down arrow" class="down">
+            </div>    
+            <div class="about-container">
+                <p class="credit">created by <span class="priyanshu">Priyanshu Modi</span></p>
+                <img src="images/boy.png" alt="boy" class="boy">
+            </div>
+            <div class="contact-options-container">
+                <p class="contact-title">Contact</p>
+                <div class="contact-icons-container">
+                    <img src="images/linkedin.png" alt="linkedin" class="linkedin" onclick="openlinkedin()">
+                    <img src="images/gmail.png" alt="gmail" class="gmail" onclick="opengmail()">
+                </div>
+            </div>
+            </div>    
+        </div>
+    </div>
+
+<!-- ********************************************************** -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+        document.body.classList.add("hide-contact");
+    })
+    function openindex(){
+        window.open("index.html", "_self");
+    }
+    function opencountry(){
+        window.open("Countries.html", "_self");
+    }
+    function opencapital(){
+        window.open("Cities.html", "_self");
+    }
+    function opencontact(){
+        document.body.classList.remove("hide-contact");
+        document.body.classList.add("show-contact");
+        document.body.classList.remove("show-footer");
+        setTimeout(() => {
+            document.body.classList.add("show-contact-contents");
+            if(screen.width > 768){ 
+                var contact_menu = document.querySelector(".contact-menu-container");
+                var bottom = document.querySelector(".bottom-container");
+                document.body.addEventListener("click", ()=>{
+                    if(contact_menu != event.target && !contact_menu.contains(event.target) && bottom != event.target && !bottom.contains(event.target)){
+                        document.body.classList.remove("show-contact");
+                        setTimeout(() => {
+                            document.body.classList.add("show-footer");
+                        }, 600);
+                        document.body.classList.remove("show-contact-contents");
+                    }
+                })
+            }
+        }, 440);
+    }
+    function closecontact(){
+        document.body.classList.remove("show-contact");
+        setTimeout(() => {
+            document.body.classList.add("show-footer");
+        }, 600);
+        document.body.classList.remove("show-contact-contents");
+    }
+    function opengmail(){
+        window.open("mailto:priyanshumodi.1909@gmail.com");
+    }
+    function openlinkedin(){
+        window.open("https://www.linkedin.com/in/priyanshu-modi-5675941b5/");
+    }
+    // if(screen.width > 768){
+    //     document.body.classList.add("laptop");
+    // }
+</script>
+</body>
+</html>
