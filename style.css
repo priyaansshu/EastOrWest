@@ -69,6 +69,8 @@ body::before {
     margin: 20px 0px 0px;
     text-shadow: 0px 0px 30px black;
     z-index: 99;
+    user-select: none;
+    -webkit-user-select: none;
 }
 .mid-container{
     margin-top: 25%;
@@ -152,8 +154,11 @@ body::before {
     display: none;
 }
 .button-text{
+    cursor: default;
     font-size: 14px;
     color: rgb(160,64,185);
+    user-select: none;
+    -webkit-user-select: none;
 }
 .bottom-container{
     display: none;
@@ -426,7 +431,7 @@ body::before {
 .city-name{
     font-family: "prospekt";
     margin: 0px;
-    font-size: 40px;
+    font-size: 30px;
     letter-spacing: 1.2px;
 }
 .west, .east{
@@ -546,13 +551,19 @@ body::before {
     max-width: 80%;
     color: white;
     text-align: center;
-    padding: 20px 25px 15px;
+    padding: 20px 25px 20px;
     border-radius: 40px;
+    box-shadow: 40px 40px 150px 1px rgba(227,95,89,0.3), -40px -60px 150px 1px #7d3ecf60;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 40px 40px 150px 1px rgba(227,95,89,0.3), -40px -60px 150px 1px #7d3ecf60;
+}
+.go-upper-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .game-over-text{
     margin: 5px 0px 15px;
@@ -560,24 +571,35 @@ body::before {
     font-size: 30px;
 }
 .correct-text{
-    margin: 20px 0px 40px;
+    margin: 20px 0px 30px;
 }
 .game-over-button-container{
     display: flex;
-    height: fit-content;
-    min-width: 100%;
     flex-direction: column;
     justify-content: center;    
+    min-width: 80%;
+    height: fit-content;
 }
 .bottom-game-button-container{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.game-over-button-container button{
+.play-again, .share, .home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.play-again-button, .share-button, .home-button{
     background: white;
     color: rgb(160,64,185);
     border-radius: 25px;
+    width: 100%;
+    min-height: 40px;
+    line-height: 40px;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
 }
 .share{
     width: 50%;
@@ -704,8 +726,18 @@ body::before {
     .mode-title{
         text-shadow: 0px 0px 100px black;
     }
+    .globe{
+        width: 150px;
+        left: -10%;
+        top: 7%;
+    }
+    .map{
+        width: 120px;
+        left: 0%;
+        top: 45%;
+    }
 }
-@media only screen and (max-width: 400px){
+@media only screen and (min-width: 351px) and (max-width: 400px){
     #west-container{
         left: 15%;
     }
@@ -713,28 +745,94 @@ body::before {
         right: 15%;
     }
     #cn1, #cn2{
-        font-size: 20px;
+        font-size: 30px;
     }
-}
-@media only screen and (min-width: 500px){
     .globe{
-        width: 280px;
+        width: 200px;
         left: -10%;
-        top: 5%;
     }
     .map{
-        width: 230px;
-        top: 45%;
-        left: -2%;
+        width: 160px;
+        left: -5%;
     }
-    #country-play-button{
-        margin-bottom: 10%;
+}
+@media only screen and (min-width: 401px) and (max-width: 499px){
+    .globe{
+        width: 300px;
+        top: 3%;
+    }
+    .map{
+        width: 240px;
+        top: 40%;
+    }
+}
+@media only screen and (min-width: 500px) and (max-width: 619px){
+    .globe{
+        width: 350px;
+        top: 0%;
+        left: -10%;
+    }
+    .map{
+        width: 300px;
+        left: -5%;
+        top: 38%;
+    }
+}
+@media only screen and (min-width: 620px) and (max-width: 767px){ 
+    .globe{
+        width: 370px;
+        left: -10%;
+        top: -2%;
+    }
+    .map{
+        width: 320px;
+        top: 35%;
+        left: -2%;
     }
     .mid-container{
         margin-top: 20%;
     }
+    .first-container{
+        margin-bottom: 15%;
+    }
 }
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 768px) and (max-width: 949px){
+    .globe{
+        width: 400px;
+        left: -10%;
+        top: 0%;
+    }
+    .map{
+        width: 330px;
+        left: -2%;
+        top: 40%;
+    }
+    .first-container{
+        margin-bottom: 12%;
+    }
+    #index-mid-container{
+        margin-top: 25%;
+    }
+}
+@media only screen and (min-width: 950px) and (max-width: 1159px){
+    .globe{
+        width: 450px;
+        left: -10%;
+        top: 0%;
+    }
+    .map{
+        width: 380px;
+        left: -2%;
+        top: 40%;
+    }
+    .first-container{
+        margin-bottom: 12%;
+    }
+    #index-mid-container{
+        margin-top: 25%;
+    }
+}
+@media only screen and (min-width: 1160px){
     #nav-title{
         max-width: fit-content;
         cursor: pointer;
@@ -775,18 +873,6 @@ body::before {
         justify-content: flex-end;
         box-shadow: 40px 40px 150px 1px rgba(227,95,89,0.3), -40px -40px 150px 1px #7d3ecf8c;
     }
-    /* .globe-rc{
-        width: 500px;
-        height: 500px;
-        left: 3%;
-        bottom: 108%;
-    }
-    .map-rc{
-        width: 430px;
-        height: 430px;
-        left: 46%;
-        bottom: 207%;
-    } */
     .globe{
         width: 500px;
         top: -4%;
@@ -918,18 +1004,22 @@ body::before {
         min-width: 30%;
         max-width: fit-content;
     }
-    .game-over-button-container button{
-        border-radius: 25px;
-        cursor: pointer;
-        box-shadow: 0px 0px 100px 1px rgb(42, 15, 49, 0.15);
+    .play-again-button, .share-button, .home-button{
         background: transparent;
         border: 2px solid white;
         color: white;
+        border-radius: 25px;
+        min-height: 40px;
+        line-height: 40px;
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
-    .game-over-button-container button:hover{
+    .play-again-button:hover, .share-button:hover, .home-button:hover{
         background: white;
         color: rgb(160,64,185);
-        /* transform: scale(1.05); */
         box-shadow: 0px 0px 100px 1px rgb(42, 15, 49, 0.3);
     }
     .main-graphic-container{
