@@ -92,15 +92,15 @@ body::before {
     margin-bottom: 15%;
 }
 .globe, .map{
-    width: 250px;
+    width: 240px;
     position: absolute;
 }
 .globe{
     left: -15%;
-    top: 4%;
+    top: 8%;
 }
 .map{
-    width: 200px;
+    width: 190px;
     left: -5%;
     top: 42%;
 }
@@ -737,7 +737,7 @@ body::before {
         top: 45%;
     }
 }
-@media only screen and (min-width: 351px) and (max-width: 400px){
+@media only screen and (min-width: 351px) and (max-width: 400px) and (max-height: 725px){
     #west-container{
         left: 15%;
     }
@@ -756,13 +756,33 @@ body::before {
         left: -5%;
     }
 }
+/* @media only screen and (min-width: 351px) and (max-width: 400px) and (min-height: 726){
+    #west-container{
+        left: 15%;
+    }
+    #east-container{
+        right: 15%;
+    }
+    #cn1, #cn2{
+        font-size: 30px;
+    }
+    .globe{
+        width: 200px;
+        left: -10%;
+        top: 40%;
+    }
+    .map{
+        width: 160px;
+        left: -5%;
+    }
+} */
 @media only screen and (min-width: 401px) and (max-width: 499px){
     .globe{
-        width: 300px;
+        width: 250px;
         top: 3%;
     }
     .map{
-        width: 240px;
+        width: 200px;
         top: 40%;
     }
 }
