@@ -7,7 +7,7 @@
     <title>Countries</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="overflow: hidden;">
     <div class="top-container">
             <h1 class="title" id="nav-title" onclick="openindex()">East/West</h1>
     </div>
@@ -101,8 +101,8 @@
             city1.innerHTML=cityData[index].name;
             cl1 = Math.floor(cityData[index].latlng[1]);
             
-            console.log("name1: " + cityData[index].name);
-            console.log("lat1: " + cl1);
+            // console.log("name1: " + cityData[index].name);
+            // console.log("lat1: " + cl1);
         }
         else{
             city2.innerHTML=cityData[index].name;
@@ -111,14 +111,14 @@
             var rule = document.querySelector(".rule-text-2");
             rule.innerHTML = "with respect to";
 
-            console.log("name2: " + cityData[index].name);
-            console.log("lat2: " + cl2); 
-            if(cl2 <= cl1){
-                console.log("west");
-            }
-            else{
-                console.log("east");
-            }
+            // console.log("name2: " + cityData[index].name);
+            // console.log("lat2: " + cl2); 
+            // if(cl2 <= cl1){
+            //     console.log("west");
+            // }
+            // else{
+            //     console.log("east");
+            // }
         }
     }
     window.addEventListener("DOMContentLoaded", ()=>{
