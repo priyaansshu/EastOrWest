@@ -8,11 +8,11 @@
 }
 @font-face {
     font-family: "recoletablack";
-    src: url(Recoleta/Recoleta-Black.ttf);
+    src: url(Recoleta-Black.ttf);
 }
 @font-face{
     font-family: "recoleta";
-    src: url(Recoleta/Recoleta-Bold.ttf);
+    src: url(Recoleta-Bold.ttf);
 }
 html{
     background: #140f1f;
